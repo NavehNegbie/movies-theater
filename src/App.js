@@ -1,9 +1,9 @@
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import Home from './components/home/Home';
-import MoviePage from './components/MoviePage';
+import MoviePage from './components/moviePage/MoviePage';
 import NotFound from './components/NotFound';
-import TopBar from './components/TopBar';
+import TopBar from './components/topBar/TopBar';
 import { HOME, MOVIE } from './routes/routes';
 
 const App = () => {

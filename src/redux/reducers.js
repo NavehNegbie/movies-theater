@@ -1,7 +1,7 @@
 import { INIT_DATA } from './actionTypes';
 
 const initState = {
-    movies: []
+    movies: null
 }
 
 export const rootReducer = (state = initState, action) => {

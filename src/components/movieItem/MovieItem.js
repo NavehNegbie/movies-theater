@@ -1,23 +1,15 @@
-import { Card, CardActionArea, CardContent, CardMedia, makeStyles, Typography } from '@material-ui/core';
+import { Card, CardActionArea, CardContent, CardMedia, Typography, withStyles } from '@material-ui/core';
 import parse from 'html-react-parser';
 import PropTypes from 'prop-types';
 import React from 'react';
+import styles from './MovieItem.css';
 
-MovieItem.propTypes = {
+const propTypes = {
+    classes: PropTypes.object.isRequired,
     movie: PropTypes.object.isRequired
 };
 
-const useStyles = makeStyles((theme) => ({
-    media: {
-        height: 440,
-    },
-    cardContentRoot: {
-        height: '12rem'
-    },
-}));
-
-function MovieItem({ movie }) {
-    const classes = useStyles();
+function MovieItem({ classes, movie }) {
 
     return (
         <Card>
@@ -27,16 +19,16 @@ function MovieItem({ movie }) {
                         media: classes.cardMedia
                     }}
                     className={classes.media}
-                    image={movie.largeimage}
+                    image={movie.image}
                     title={movie.title}
                 />
                 <CardContent classes={{
                     root: classes.cardContentRoot
                 }}>
-                    <Typography gutterBottom variant="h5" component="h2">
+                    <Typography gutterBottom variant="body1" component="h2" className={classes.title}>
                         {parse(movie.title)}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
+                    <Typography variant="body2" color="textSecondary" component="p" className={classes.info}>
                         {parse(movie.synopsis)}
                     </Typography>
                 </CardContent>
@@ -45,4 +37,5 @@ function MovieItem({ movie }) {
     );
 }
 
-export default MovieItem;
+MovieItem.prototype = propTypes;
+export default withStyles(styles)(MovieItem);
