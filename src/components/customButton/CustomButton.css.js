@@ -1,8 +1,8 @@
 const styles = theme => ({
     button: {
-        backgroundColor: '#27d6ff',
+        backgroundColor: theme.palette.button,
         '&:hover': {
-            backgroundColor: '#12a5c7',
+            backgroundColor: theme.palette.buttonHover,
         },
     }
   });

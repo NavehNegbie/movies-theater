@@ -3,17 +3,21 @@ const styles = theme => ({
         height: 246,
     },
     cardContentRoot: {
-        height: 177,
+        height: 138,
 
     },
     info: {
         overflow: 'hidden',
         display: '-webkit-box',
-        '-webkitLineClamp': 4,
+        '-webkitLineClamp': 3,
         '-webkitBoxOrient': 'vertical'
     },
     title: {
         fontWeight: 'bolder',
+        overflow: 'hidden',
+        display: '-webkit-box',
+        '-webkitLineClamp': 3,
+        '-webkitBoxOrient': 'vertical'
     }
   });
 

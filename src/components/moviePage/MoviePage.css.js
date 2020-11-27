@@ -2,15 +2,12 @@ const styles = theme => ({
     paper: {
         width: '70%',
         margin: 'auto',
-        backgroundColor: '#0a263f',
-        color: 'white',
+        backgroundColor: theme.palette.darkBlue,
+        color: theme.palette.white,
         position: 'relative',
         marginTop: '2%'
     },
     left: {
-        // width: '50%',
-        // left: '20%',
-        // height: '100%'
         paddingTop: '10px',
         paddingLeft: '20px'
     },
@@ -24,7 +21,7 @@ const styles = theme => ({
         marginTop: "15px"
     },
     whiteFont: {
-        color: 'white'
+        color: theme.palette.white
     },
     headline: {
         marginBottom: '13px'

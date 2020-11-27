@@ -9,15 +9,15 @@ const styles = theme => ({
         marginTop: '10px'
     },
     accordionRoot: {
-        color: 'white',
-        backgroundColor: '#0a263f'
+        color: theme.palette.white,
+        backgroundColor: theme.palette.darkBlue
     },
     inputRoot: {
         height: '40px',
         width: '60%',
     },
     border: {
-        borderColor: '#3f51b5'
+        borderColor: theme.palette.inputBorder
     },
     buttonContainer: {
         textAlign: 'center',

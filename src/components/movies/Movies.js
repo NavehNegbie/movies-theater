@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { MOVIES } from '../../routes/routes';
-import MovieItem from '../movieItem/MovieItem';
 import UserMessage from '../userMessage/UserMessage';
+import MovieItem from './movieItem/MovieItem';
 import styles from './Movies.css';
 
 const propTypes = {

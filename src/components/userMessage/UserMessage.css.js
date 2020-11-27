@@ -1,6 +1,6 @@
 const styles = theme => ({
     text: {
-        backgroundColor: '#124f868c',
+        backgroundColor: theme.palette.message,
         width: '42%',
         margin: 'auto',
         marginTop: '100px',

@@ -21,7 +21,6 @@ const FilterItem = ({ classes, handleChangeFilter, label, propName, type }) => {
                         input: classes.whiteText
                     }
                 }}
-                
                 InputLabelProps={{
                     classes: {
                         root: classes.whiteText

@@ -3,55 +3,75 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import CustomButton from '../customButton/CustomButton';
-import FilterItem from '../filterItem/FilterItem';
-import filterInputs from './FilterInputesData';
-import { filterMaxRate, filterMinRate, filterName, filterYear } from './FiltersFunctions';
+import filterInputs from './FilterInputsData';
+import FilterItem from './filterItem/FilterItem';
+import { filterEqual, filterIncludes, filterMax, filterMin } from './FiltersFunctions';
 import styles from './FiltersSection.css';
 
 const propTypes = {
     classes: PropTypes.object.isRequired,
-    setFilteredMovies: PropTypes.func.isRequired,
+    onFilterMovies: PropTypes.func.isRequired,
     movies: PropTypes.array.isRequired,
 }
 
-const FiltersSection = ({ classes, setFilteredMovies, movies }) => {
+const FiltersSection = ({ classes, onFilterMovies, movies }) => {
+
     const [filters, setFilters] = useState({
-        name: "",
-        year: "",
-        minRate: "",
-        maxRate: "",
+        name: {
+            val: "",
+            func: filterIncludes
+        },
+        year: {
+            val: "",
+            func: filterEqual
+        },
+        minRate: {
+            val: "",
+            func: filterMin
+        },
+        maxRate: {
+            val: "",
+            func: filterMax
+        }
     })
 
     const handleChangeFilter = (value, propName) => {
-        setFilters({ ...filters, [propName]: value });
+        const updatedPropObject = { ...filters[propName], val: value }
+        setFilters({ ...filters, [propName]: updatedPropObject });
     }
 
-    const handleFilterMovies = (filters) => {
-        setFilteredMovies(movies.filter(movie => filtersManagers(movie, filters)));
+    const checkIfNoFilters = () => {
+        return Object.keys(filters).find(filter => filters[filter].val)
     }
 
-    const filtersManagers = (movie, filters) => {
+    const handleFilterMovies = () => {
+        onFilterMovies(movies.filter(movie => filtersManagers(movie)), checkIfNoFilters());
+    }
+
+    const filtersManagers = (movie) => {
 
         let hasPassedFilter = true;
-        for (let i = 0; i < filtesFunctions.length && hasPassedFilter; i++) {
-            hasPassedFilter = filtesFunctions[i](movie, filters);
+        const filtersKeys = Object.keys(filters);
+        for (let i = 0; i < filtersKeys.length && hasPassedFilter; i++) {
+            const currFilter = filtersKeys[i];
+            const inputValue = filters[currFilter].val;
+            hasPassedFilter = inputValue ? filters[currFilter].func(movie, inputValue) : true;
         }
         return hasPassedFilter;
-
-        // filtesFunctions.map(aa => aa(movie, filters))
-        // return (
-        //     filterName(movie, filters) &&
-        //     filterYear(movie, filters) &&
-        //     filterRate(movie, filters) 
-        //     )
     }
 
-    const filtesFunctions = [
-        filterName,
-        filterYear,
-        filterMinRate,
-        filterMaxRate,
-    ];
+    const renderFilters = () => {
+        return filterInputs.map(filterInput => {
+            return <Grid key={filterInput.propName} item xs={3}>
+                <FilterItem
+                    handleChangeFilter={handleChangeFilter}
+                    label={filterInput.label}
+                    propName={filterInput.propName}
+                    type={filterInput.type}
+                />
+            </Grid>
+        })
+    }
 
     return (
         <Grid className={classes.accordionContainer}>
@@ -68,16 +88,7 @@ const FiltersSection = ({ classes, setFilteredMovies, movies }) => {
                     }}
                 >
                     <Grid container spacing={4}>
-                        {filterInputs.map(filterInput => {
-                            return <Grid key={filterInput.propName} item xs={3}>
-                                <FilterItem
-                                    handleChangeFilter={handleChangeFilter}
-                                    label={filterInput.label}
-                                    propName={filterInput.propName}
-                                    type={filterInput.type}
-                                />
-                            </Grid>
-                        })}
+                        {renderFilters()}
                     </Grid>
                     <Grid className={classes.buttonContainer}>
                         <CustomButton

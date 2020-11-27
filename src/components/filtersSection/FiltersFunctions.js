@@ -1,23 +1,19 @@
-export const filterName = (movie, filters) => {
-    return filters.name ? movie.title.toLowerCase().includes(filters.name.toLowerCase()): true;
+export const filterIncludes = (movie, value) => {
+    return movie.title.toLowerCase().includes(value.toLowerCase());
 }
 
-export const filterYear = (movie, filters) => {
-    return filters.year ? movie.released === filters.year: true;
+export const filterEqual = (movie, value) => {
+    return movie.released === value;
 }
 
-export const filterMinRate = (movie, filters) => {
-    if(!filters.minRate) return true;
-
+export const filterMin = (movie, value) => {
     if(!movie.rating) return false;
 
-    return (parseInt(movie.rating) >= parseInt(filters.minRate))
+    return (parseInt(movie.rating) >= parseInt(value))
 }
 
-export const filterMaxRate = (movie, filters) => {
-    if(!filters.maxRate) return true;
-
+export const filterMax = (movie, value) => {
     if(!movie.rating) return false;
 
-    return (parseInt(movie.rating) <= parseInt(filters.maxRate))
+    return (parseInt(movie.rating) <= parseInt(value))
 }

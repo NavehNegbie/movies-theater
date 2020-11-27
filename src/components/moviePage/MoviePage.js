@@ -1,11 +1,11 @@
 import { Grid, Paper, Typography, withStyles } from '@material-ui/core';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
-import axios from 'axios';
 import parse from 'html-react-parser';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import { getMovieApi } from '../../API';
 import CustomButton from '../customButton/CustomButton';
 import styles from './MoviePage.css';
 
@@ -21,7 +21,7 @@ const MoviePage = ({ classes }) => {
     useEffect(() => {
         const getMovie = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/movies/${id}`)
+                const response = await getMovieApi(id);
                 setMovie(response.data[0]);
             } catch (error) {
                 console.log(error);

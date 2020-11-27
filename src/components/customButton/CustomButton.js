@@ -7,12 +7,13 @@ const propTypes = {
     classes: PropTypes.object.isRequired,
     text: PropTypes.string.isRequired,
     onClickFunc: PropTypes.func.isRequired,
-    icon: PropTypes.object
+    icon: PropTypes.object,
+    disabled: PropTypes.bool
 };
 
-function CustomButton({ classes, text, onClickFunc, icon}) {
+function CustomButton({ classes, text, onClickFunc, icon, disabled}) {
     return (
-        <div>
+        <>
             <Button
                 variant="contained"
                 color="default"
@@ -22,10 +23,11 @@ function CustomButton({ classes, text, onClickFunc, icon}) {
                 }}
                 onClick={onClickFunc}
                 startIcon={icon ? icon : null}
+                disabled={disabled ? disabled : null}
             >
                 {text}
             </Button>
-        </div>
+        </>
     );
 }
 

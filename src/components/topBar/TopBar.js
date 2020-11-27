@@ -18,7 +18,7 @@ function TopBar({ classes }) {
             }}>
             <Toolbar>
                 <Link to={HOME} className={classes.link}>
-                    <Typography variant="h5">
+                    <Typography variant="h4">
                         Next Theater
                     </Typography>
                 </Link>

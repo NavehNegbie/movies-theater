@@ -1,11 +1,11 @@
 const styles = theme => ({
     appBar: {
-        backgroundColor: '#0a263f',
+        backgroundColor: theme.palette.darkBlue,
         alignItems: 'center'
     },
     link: {
         textDecoration: 'none',
-        color: 'white',
+        color: theme.palette.white,
         cursor: 'pointer'
     }
   });
